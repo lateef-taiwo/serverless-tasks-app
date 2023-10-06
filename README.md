@@ -8,7 +8,7 @@ Workshop Link: <https://catalog.us-east-1.prod.workshops.aws/v2/workshops/841ce1
 In this tutorial, you'll create a simple [serverless](https://aws.amazon.com/serverless/) web application that implements a "Todo app" with an API to store and retrieve tasks in a cloud database. In addition, we will integrate machine learning to automatically identify and label objects in images attached to tasks.
 
 ## AWS Services used
- Amazon S3, AWS Lambda, Amazon API Gateway, AWS Amplify, Amazon DynamoDB, Amazon Rekognition, AWS Cloud9.
+ Amazon S3, AWS Lambda, SAM, Amazon API Gateway, AWS Amplify, Amazon DynamoDB, Amazon Rekognition, AWS Cloud9.
 
 ## Application Architecture
 

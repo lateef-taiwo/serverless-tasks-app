@@ -51,7 +51,31 @@ Resources:
             Method: POST
             Auth:
               Authorizer: MyLambdaTokenAuthorizer
-
+  # DetectLables Lambda Function
+  DetectLabelsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/handlers/detectLabels
+      Environment:
+        Variables:
+          TASKS_TABLE: !Ref TasksTable
+      Events:
+        ObjectCreatedEvent:
+          Type: S3
+          Properties:
+            Bucket: !Ref UploadsBucket
+            Events: s3:ObjectCreated:*
+      Handler: app.handler
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TasksTable
+        - RekognitionDetectOnlyPolicy: {}
+        - Version: 2012-10-17
+          Statement:
+            - Effect: Allow
+              Action: s3:GetObject*
+              Resource: !Sub "arn:aws:s3:::uploads-${AWS::StackName}-${AWS::Region}-${AWS::AccountId}*"
+      Runtime: nodejs14.x
 
   TasksApi:
     Type: AWS::Serverless::Api
